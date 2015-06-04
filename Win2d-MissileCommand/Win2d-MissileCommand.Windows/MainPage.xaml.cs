@@ -29,13 +29,18 @@ namespace Win2d_MissileCommand
         // keeps track of if all images are loaded.
         public bool isAllImagesLoaded = false;
 
-        List<GenericItem> objects = new List<GenericItem>();
+        GenericScene gs = new GenericScene("test");
 
         public MainPage()
         {
             this.InitializeComponent();
         }
 
+        /// <summary>
+        /// CreateResources is where we load in assets. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private async void myDrawingSurface_CreateResources(Microsoft.Graphics.Canvas.UI.Xaml.CanvasControl sender, Microsoft.Graphics.Canvas.UI.CanvasCreateResourcesEventArgs args)
         {
             // Load in assets
@@ -50,7 +55,8 @@ namespace Win2d_MissileCommand
                 GenericItem gi = new GenericItem("test");
                 gi.Location = new System.Numerics.Vector2(r.Next(0,1000), r.Next(0,800));
                 gi.SetBitmapFromImageDictionary("cannon");
-                objects.Add(gi);
+                
+                gs.AddObject(gi);
             }
 
             isAllImagesLoaded = true;
@@ -58,6 +64,11 @@ namespace Win2d_MissileCommand
             sender.Invalidate();
         }
 
+        /// <summary>
+        /// Our Draw Function.
+        /// </summary>
+        /// <param name="sender">A Canvas Control.</param>
+        /// <param name="args">Drawing Arguments.</param>
         private void myDrawingSurface_Draw(Microsoft.Graphics.Canvas.UI.Xaml.CanvasControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasDrawEventArgs args)
         {
             CanvasDrawingSession cds = args.DrawingSession;
@@ -65,10 +76,7 @@ namespace Win2d_MissileCommand
 
             if (isAllImagesLoaded)
             {
-                foreach (GenericItem gi in objects)
-                {
-                    gi.Draw(cds);
-                }
+                gs.Draw(cds);
 
             }
 
