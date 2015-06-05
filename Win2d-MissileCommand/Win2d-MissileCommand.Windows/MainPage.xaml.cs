@@ -29,8 +29,6 @@ namespace Win2d_MissileCommand
         // keeps track of if all images are loaded.
         public bool isAllImagesLoaded = false;
 
-        GenericScene gs = new GenericScene("test");
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -49,6 +47,12 @@ namespace Win2d_MissileCommand
             await ContentPipeline_Image.AddImage("cannon", @"Assets/tm_cannon.png");
             await ContentPipeline_Image.AddImage("clone", @"Assets/tm_clone.png");
 
+
+            
+
+            // setup the scene (this really should be done in another function)
+            GenericScene gs = new GenericScene("test");
+
             Random r = new Random();
             for (int i = 0; i < 50; i++)
             {
@@ -58,6 +62,9 @@ namespace Win2d_MissileCommand
                 
                 gs.AddObject(gi);
             }
+
+            SceneManager.AddScene(gs);
+            SceneManager.CurrentScene = gs;
 
             isAllImagesLoaded = true;
 
@@ -76,7 +83,11 @@ namespace Win2d_MissileCommand
 
             if (isAllImagesLoaded)
             {
-                gs.Draw(cds);
+                if (SceneManager.CurrentScene != null)
+                {
+                    SceneManager.CurrentScene.Draw(cds);
+                }
+                
 
             }
 
