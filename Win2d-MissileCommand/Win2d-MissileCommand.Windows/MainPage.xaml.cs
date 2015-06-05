@@ -26,8 +26,7 @@ namespace Win2d_MissileCommand
     public sealed partial class MainPage : Page
     {
 
-        // keeps track of if all images are loaded.
-        public bool isAllImagesLoaded = false;
+
 
         public MainPage()
         {
@@ -54,7 +53,7 @@ namespace Win2d_MissileCommand
             GenericScene gs = new GenericScene("test");
 
             Random r = new Random();
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 1; i++)
             {
                 GenericItem gi = new GenericItem("test");
                 gi.Location = new System.Numerics.Vector2(r.Next(0,1000), r.Next(0,800));
@@ -68,7 +67,9 @@ namespace Win2d_MissileCommand
 
             isAllImagesLoaded = true;
 
-            sender.Invalidate();
+            GameTimer gt = new GameTimer(sender, 60, 30);
+
+            //sender.Invalidate();
         }
 
         /// <summary>
@@ -88,10 +89,12 @@ namespace Win2d_MissileCommand
                     SceneManager.CurrentScene.Draw(cds);
                 }
                 
-
             }
 
         }
+
+        // keeps track of if all images are loaded.
+        public bool isAllImagesLoaded = false;
     }
 }
 

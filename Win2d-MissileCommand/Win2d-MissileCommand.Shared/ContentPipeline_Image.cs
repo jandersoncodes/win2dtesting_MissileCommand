@@ -10,12 +10,7 @@ namespace Toodee
 {
     public static class ContentPipeline_Image
     {
-        static public Dictionary<string, CanvasBitmap> ImageDictionary = new Dictionary<string, CanvasBitmap>();
-
-        // TODO: 
-        // Add image into dictionary
-        // Remove image from dictionary
-
+        
 
         /// <summary>
         /// Adds an image to an ImageDictionary of loaded assets.
@@ -58,6 +53,7 @@ namespace Toodee
 
         }
 
+        static public Dictionary<string, CanvasBitmap> ImageDictionary = new Dictionary<string, CanvasBitmap>();
         static public CanvasControl ParentCanvas = null;
     }
 }

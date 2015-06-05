@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ContentPipeline_Image.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameTimer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenericItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenericScene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SceneManager.cs" />
