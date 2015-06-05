@@ -52,6 +52,22 @@ namespace Toodee
             }
             
         }
+
+        //i added.
+        public virtual void DrawGeoLine(CanvasDrawingSession cds) 
+        {
+            if (LineEndpoint == null)
+            {
+                return;
+            }
+            if (Bitmap != null)
+            {
+                return;
+            }
+
+            cds.DrawLine(Location, LineEndpoint, Windows.UI.Colors.Green);
+
+        }
         
         /// <summary>
         /// Assign a bitmap from our ContentPipline ImageDictionary to the GenericItem CanvasBitmap
@@ -80,7 +96,10 @@ namespace Toodee
             get { return new Rect(Location.X, Location.Y, Size.Width -1, Size.Height -1); }
         }
 
+        public Vector2 LineEndpoint { get; set; } // i added
+
         public bool DrawBoundingRectangle { get; set; }
+
 
         // update method
         // draw method

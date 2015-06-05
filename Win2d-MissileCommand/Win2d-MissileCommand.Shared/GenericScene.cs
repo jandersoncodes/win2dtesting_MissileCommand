@@ -28,6 +28,15 @@ namespace Toodee
             }
         }
 
+        // I added
+        public override void DrawGeoLine(Microsoft.Graphics.Canvas.CanvasDrawingSession cds)
+        {
+            foreach (GenericItem gi in objects)
+            {
+                gi.DrawGeoLine(cds);
+            }
+        }
+
         public bool AddObject(GenericItem gi)
         {
             if (objects == null)

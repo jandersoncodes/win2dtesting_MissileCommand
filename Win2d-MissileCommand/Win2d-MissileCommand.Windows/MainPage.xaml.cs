@@ -58,10 +58,16 @@ namespace Win2d_MissileCommand
                 GenericItem gi = new GenericItem("test");
                 gi.Location = new System.Numerics.Vector2(r.Next(0,1000), r.Next(0,800));
                 gi.SetBitmapFromImageDictionary("cannon");
-                
+                gi.DrawBoundingRectangle = true;
                 gs.AddObject(gi);
             }
 
+            //This is just for drawing a line.
+            GenericItem giline = new GenericItem("linetest");
+            giline.Location = new System.Numerics.Vector2(0, 0);
+            giline.LineEndpoint = new System.Numerics.Vector2(500, 500);
+            gs.AddObject(giline);
+            
             SceneManager.AddScene(gs);
             SceneManager.CurrentScene = gs;
 
@@ -80,13 +86,16 @@ namespace Win2d_MissileCommand
         private void myDrawingSurface_Draw(Microsoft.Graphics.Canvas.UI.Xaml.CanvasControl sender, Microsoft.Graphics.Canvas.UI.Xaml.CanvasDrawEventArgs args)
         {
             CanvasDrawingSession cds = args.DrawingSession;
-            
 
+            
             if (isAllImagesLoaded)
             {
                 if (SceneManager.CurrentScene != null)
                 {
                     SceneManager.CurrentScene.Draw(cds);
+                    SceneManager.CurrentScene.DrawGeoLine(cds);
+                    
+                    //cds.DrawRectangle(100, 100, 100, 100, Windows.UI.Colors.Green);
                 }
                 
             }
